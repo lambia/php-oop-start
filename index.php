@@ -1,53 +1,48 @@
 <?php
+// Importo lo "strato dati"
+require __DIR__ . '/data.php';
+?>
+<!DOCTYPE html>
+<html lang="en">
 
-/* Importo i modelli, cioè le "definizioni" delle classi di oggetto */
-require __DIR__ . '/Models/Address.php';
-require __DIR__ . '/Models/User.php';
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utenti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
 
-// Creo un oggetto "indirizzo" vuoto
-// $ind_lorenzo = new Address();
+<body>
 
-// Popolo gli attributi dell'oggetto vuoto
-// $ind_lorenzo->street = "via roma";
-// $ind_lorenzo->number = "123";
-// $ind_lorenzo->postalCode = "80100";
-// $ind_lorenzo->city = "salerno";
-// $ind_lorenzo->country = "italia";
+    <div class="container">
+        <div class="row">
+            <h2>Utenti</h2>
+        </div>
+        <div class="row">
+            <?php foreach ($utenti as $utente) : ?>
+                <div class="col-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <?= $utente->name . " " . $utente->surname ?>
+                                <!-- Per la membership andrebbe usato almeno "property_exists" -->
+                                <?= (isset($utente->membership)) ? "(" . $utente->membership . ")" : "" ?>
+                            </h5>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                <!-- Stampa la città, se presente, altrimenti "Sconosciuto" -->
+                                <?php /* echo isset($utente->address) ? $utente->address->city : "Sconosciuto"; */ ?>
+                                <!-- Stampa la città, se presente (v. nullsafe operator slide 21) -->
+                                <?php /* echo $utente->address?->city; */ ?>
+                                <!-- L'address è obbligatorio, quindi ci basta stampare direttamente -->
+                                <?= $utente->address->country ?>
+                            </h6>
+                            <p class="card-text"><?= implode(", ", $utente->permissions) ?></p>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</body>
 
-// Creo un oggetto "indirizzo" già popolato tramite il costruttore presente nel modello
-$ind_lorenzo = new Address("via roma", 123, 80100, "Salerno", "Italy");
-// Popolo/altero l'attributo città in secondo momento
-$ind_lorenzo->city = "Torino";
-
-// Un altro indirizzo
-$ind_marco = new Address("via alberata", 1024, 10135, "Salerno", "Italy");
-
-//Per stampare oggetti non basta un echo
-echo "<h2>Stampo oggetti indirizzo</h2>";
-var_dump($ind_lorenzo);
-var_dump($ind_marco);
-
-//Posso stampare una proprietà dell'istanza. Ognuno avrà valori propri e diversi.
-echo "<h2>Stampo proprietà degli oggetti indirizzo</h2>";
-echo $ind_lorenzo->street . "<br>";
-echo $ind_marco->street . "<br>";
-
-//Posso richiamare un metodo dell'istanza. Ognuno avrà valori propri e diversi.
-echo "<h2>Chiamo metodi degli oggetti indirizzo</h2>";
-echo $ind_lorenzo->getFullAddress() . "<br>";
-echo $ind_marco->getFullAddress() . "<br>";
-
-echo "<hr>";
-
-//Creo un'istanza di Utente, usando un indirizzo creato in precedenza
-$lorenzo = new User("Lorenzo", "Pagani", $ind_lorenzo);
-
-//Creo un'istanza di Utente, con indirizzo definito "al volo"
-$pippo = new User("Pippo", "Pagani", new Address("via italia", 123, 80100, "Salerno", "Italy"));
-
-echo "<h2>Stampo oggetto utente</h2>";
-var_dump($lorenzo) . "<br>";
-echo "<h2>Stampo proprietà indirizzo dell'oggetto utente</h2>";
-var_dump($lorenzo->address) . "<br>";
-echo "<h2>Chiamo metodo della proprietà indirizzo dell'oggetto utente</h2>";
-echo $lorenzo->address->getFullAddress() . "<br>";
+</html>
