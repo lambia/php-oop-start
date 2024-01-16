@@ -19,24 +19,19 @@ require __DIR__ . '/data.php';
             <h2>Utenti</h2>
         </div>
         <div class="row">
-            <?php foreach ($utenti as $utente) : ?>
+            <?php foreach ($dipendenti as $dipendente) : ?>
                 <div class="col-3">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">
-                                <?= $utente->name . " " . $utente->surname ?>
-                                <!-- Per la membership andrebbe usato almeno "property_exists" -->
-                                <?= (isset($utente->membership)) ? "(" . $utente->membership . ")" : "" ?>
+                                <?= $dipendente->getName() ?>
                             </h5>
                             <h6 class="card-subtitle mb-2 text-muted">
-                                <!-- Stampa la città, se presente, altrimenti "Sconosciuto" -->
-                                <?php /* echo isset($utente->address) ? $utente->address->city : "Sconosciuto"; */ ?>
-                                <!-- Stampa la città, se presente (v. nullsafe operator slide 21) -->
-                                <?php /* echo $utente->address?->city; */ ?>
+                                <?= get_class($dipendente) . ", " . $dipendente->department->name ?>
                                 <!-- L'address è obbligatorio, quindi ci basta stampare direttamente -->
-                                <?= $utente->address->country ?>
                             </h6>
-                            <p class="card-text"><?= implode(", ", $utente->permissions) ?></p>
+                            <p class="card-text"><?= implode(", ", $dipendente->permissions) ?></p>
+                            <p>Città: <?= $dipendente->address->city ?></p>
                         </div>
                     </div>
                 </div>
