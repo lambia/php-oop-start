@@ -21,10 +21,8 @@ $dipendenti = [
     new Executive("Marco Percolla", $dept_it, 42) //Parametro aggiuntivo
 ];
 
-// Non è più necessario, perchè Manager e Executive hanno i loro costruttori ridefiniti
-// if (property_exists($dipendenti[3], "teamDaGestire")) {
-//     $dipendenti[3]->teamDaGestire = "Team SysAdmin";
-// }
-// if (property_exists($dipendenti[4], "azioni")) {
-//     $dipendenti[4]->azioni = 40;
-// }
+// Non sarebbe più necessario, perchè Manager e Executive hanno i loro costruttori ridefiniti
+// Lasciato per esempio
+if ($dipendenti[3] instanceof Manager) {
+    $dipendenti[3]->teamDaGestire = "Commerciale";
+}

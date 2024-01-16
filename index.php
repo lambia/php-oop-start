@@ -28,7 +28,6 @@ require __DIR__ . '/data.php';
                             </h5>
                             <h6 class="card-subtitle mb-2 text-muted">
                                 <?= get_class($dipendente) . ", " . $dipendente->department->name ?>
-                                <!-- L'address è obbligatorio, quindi ci basta stampare direttamente -->
                             </h6>
                             <p class="card-text">
                                 <?php
