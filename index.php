@@ -32,10 +32,9 @@ require __DIR__ . '/data.php';
                             </h6>
                             <p class="card-text">
                                 <?php
-                                $nomeClasse = get_class($dipendente);
-                                if ($nomeClasse == "Manager") {
+                                if ($dipendente instanceof Manager) {
                                     echo "Gestisce il team " . $dipendente->teamDaGestire;
-                                } else if ($nomeClasse == "Executive") {
+                                } else if ($dipendente instanceof Executive) {
                                     echo "Possiede " . $dipendente->azioni . " azioni della società";
                                 }
                                 ?>
