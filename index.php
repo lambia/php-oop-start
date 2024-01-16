@@ -30,8 +30,16 @@ require __DIR__ . '/data.php';
                                 <?= get_class($dipendente) . ", " . $dipendente->department->name ?>
                                 <!-- L'address è obbligatorio, quindi ci basta stampare direttamente -->
                             </h6>
-                            <p class="card-text"><?= implode(", ", $dipendente->permissions) ?></p>
-                            <p>Città: <?= $dipendente->address->city ?></p>
+                            <p class="card-text">
+                                <?php
+                                $nomeClasse = get_class($dipendente);
+                                if ($nomeClasse == "Manager") {
+                                    echo "Gestisce il team " . $dipendente->teamDaGestire;
+                                } else if ($nomeClasse == "Executive") {
+                                    echo "Possiede " . $dipendente->azioni . " azioni della società";
+                                }
+                                ?>
+                            </p>
                         </div>
                     </div>
                 </div>

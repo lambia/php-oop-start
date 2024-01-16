@@ -7,14 +7,11 @@ class Employee
 {
     protected $name;
     public $address;
-    public $permissions;
     public $department;
 
-    public function __construct($name, array $permissions, Address $indirizzo, Department $department)
+    public function __construct($name, Department $department)
     {
         $this->name = $name;
-        $this->address = $indirizzo;
-        $this->permissions = $permissions;
         $this->department = $department;
     }
 

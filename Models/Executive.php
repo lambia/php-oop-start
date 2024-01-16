@@ -6,9 +6,9 @@ class Executive extends Employee
 {
     public $azioni;
 
-    public function __construct($name, array $permissions, Address $indirizzo, Department $department, $azioni)
+    public function __construct($name, Department $department, $azioni)
     {
-        parent::__construct($name, $permissions, $indirizzo, $department);
+        parent::__construct($name, $department);
         $this->azioni = $azioni;
     }
 }
