@@ -21,8 +21,8 @@ $dipendenti = [
     new Executive("Marco Percolla", $dept_it, 42) //Parametro aggiuntivo
 ];
 
-// Non sarebbe più necessario, perchè Manager e Executive hanno i loro costruttori ridefiniti
-// Lasciato per esempio
+// Imposto manualmente delle proprietà degli oggetti (definite nel Trait).
+// Posso farlo da costruttore?
 if ($dipendenti[3] instanceof Manager) {
     $dipendenti[3]->autoAziendale = "TG012XY";
 }
