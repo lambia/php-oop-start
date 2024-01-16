@@ -17,12 +17,17 @@ $dipendenti = [
     new Employee("Pippo Pagani", $dept_legal),
     new Employee("Francesco Bonanno", $dept_fiscale),
     new Employee("Lorenzo Pagani", $dept_it),
-    new Manager("Andrea Francioni", $dept_it, "SysAdmin"), //Parametro aggiuntivo
+    new Manager("Andrea Francioni", $dept_it, "Commerciale"), //Parametro aggiuntivo
     new Executive("Marco Percolla", $dept_it, 42) //Parametro aggiuntivo
 ];
 
 // Non sarebbe più necessario, perchè Manager e Executive hanno i loro costruttori ridefiniti
 // Lasciato per esempio
 if ($dipendenti[3] instanceof Manager) {
-    $dipendenti[3]->teamDaGestire = "Commerciale";
+    $dipendenti[3]->autoAziendale = "TG012XY";
+}
+
+if ($dipendenti[4] instanceof Executive) {
+    $dipendenti[4]->autoAziendale = "FD013BR";
+    $dipendenti[4]->telefonoAziendale = "338 45 45 465";
 }

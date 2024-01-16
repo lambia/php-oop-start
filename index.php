@@ -38,6 +38,13 @@ require __DIR__ . '/data.php';
                                 }
                                 ?>
                             </p>
+                            <p>
+                                <?php
+                                if ($dipendente instanceof Manager || $dipendente instanceof Executive) {
+                                    echo "Benefit: " .  $dipendente->getBenefits();
+                                }
+                                ?>
+                            </p>
                         </div>
                     </div>
                 </div>
